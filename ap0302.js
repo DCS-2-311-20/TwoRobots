@@ -1,12 +1,12 @@
 //
-// 応用プログラミング 第3回 課題1 (ap0301)
+// 応用プログラミング 第3回 課題2 (ap0302)
 // G184002021 拓殖太郎
 //
 "use strict"; // 厳格モード
 
 import * as THREE from 'three';
 import GUI from 'gui';
-import { makeMetalRobot } from './robot.js'
+import { makeMetalRobot, makeCBRobot } from './robot.js'
 
 // ３Ｄページ作成関数の定義
 function init() {
@@ -23,23 +23,26 @@ function init() {
   // 座標軸の設定
   const axes = new THREE.AxesHelper(18);
   scene.add(axes);
-  // axes.visible = false;
-
 
   // 平面の設定
-  const planeGeometry = new THREE.PlaneGeometry(20, 10);
-  const planeMaterial = new THREE.MeshLambertMaterial({ color: 0x007030});
+  const planeGeometry = new THREE.PlaneGeometry(20, 15);
+  const planeMaterial = new THREE.MeshLambertMaterial({ color: 0xF0A000});
   const plane = new THREE.Mesh(planeGeometry, planeMaterial);
   plane.rotation.x = -0.5 * Math.PI;
   scene.add(plane);
 
   // 金属製ロボットの追加
   const metalRobot = makeMetalRobot();
+  metalRobot.position.x = 5;
   scene.add(metalRobot);
+
+  // 金属製ロボットの追加
+  const cardboardRobot = makeCBRobot();
+  scene.add(cardboardRobot);
 
   // 光源の設定
   const spotLight = new THREE.SpotLight();
-  spotLight.position.set(-10, 30, 10);
+  spotLight.position.set(-2, 10, 10);
   scene.add(spotLight);
 
   // カメラの設定
@@ -49,7 +52,7 @@ function init() {
   // レンダラの設定
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
-  renderer.setClearColor( 0x406080 );
+  renderer.setClearColor( 0x703000 );
   document.getElementById("WebGL-output")
     .appendChild(renderer.domElement);
 
@@ -59,7 +62,7 @@ function init() {
     camera.position.x = cameraParam.x;
     camera.position.y = cameraParam.y;
     camera.position.z = cameraParam.z;
-    camera.lookAt(0, 5, 0);
+    camera.lookAt(0, 3, 0);
     camera.updateProjectionMatrix();
     renderer.render(scene, camera);
   }
