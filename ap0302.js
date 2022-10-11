@@ -36,7 +36,7 @@ function init() {
   metalRobot.position.x = 5;
   scene.add(metalRobot);
 
-  // 金属製ロボットの追加
+  // 段ボールロボットの追加
   const cardboardRobot = makeCBRobot();
   scene.add(cardboardRobot);
 
