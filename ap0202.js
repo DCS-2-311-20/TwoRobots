@@ -1,11 +1,11 @@
 //
-// 応用プログラミング 第3回 課題2 (ap0302)
-// G184002021 拓殖太郎
+// 応用プログラミング 第2回 課題2 (ap0202)
+// G384002023 拓殖太郎
 //
 "use strict"; // 厳格モード
 
 import * as THREE from 'three';
-import GUI from 'gui';
+import GUI from 'ili-gui';
 import { makeMetalRobot, makeCBRobot } from './robot.js'
 
 // ３Ｄページ作成関数の定義
@@ -41,7 +41,7 @@ function init() {
   scene.add(cardboardRobot);
 
   // 光源の設定
-  const spotLight = new THREE.SpotLight();
+  const spotLight = new THREE.SpotLight(0xffffff, 500);
   spotLight.position.set(-2, 10, 10);
   scene.add(spotLight);
 
